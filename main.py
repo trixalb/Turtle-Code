@@ -9,7 +9,7 @@ init()
 
 MIN_WIDTH = 170
 
-# Banner
+
 print(f"{Fore.GREEN}───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────")
 time.sleep(.1)
 print(f"{Fore.GREEN}─██████████████─██████──██████─████████████████───██████████████─██████─────────██████████████─────────────██████████████─██████████████─████████████───██████████████─")
@@ -38,7 +38,7 @@ print(f"{Fore.GREEN}────────────────────
 time.sleep(.1)
 print(f"{Fore.CYAN}Made by: System64{Style.RESET_ALL}")
 
-# Estado global do Turtle
+
 t = None
 screen = None
 lines = []
@@ -48,12 +48,11 @@ def create_window():
     """Cria (ou recria) a janela e a tartaruga, evitando turtle.Terminator."""
     global t, screen
 
-    # Se já existir uma janela antiga, tenta fechá-la com segurança
+
     try:
         if screen is not None:
             turtle.bye()
     except turtle.Terminator:
-        # Se já estiver encerrada, apenas ignora
         pass
 
     screen = turtle.Screen()
@@ -102,7 +101,7 @@ def process_command(line: str) -> int:
             print(f"{Fore.RED}[ERR] Valor inválido para 'left'{Style.RESET_ALL}")
             return 0
         try:
-            t.left(angle)  # gira no sentido anti-horário [web:19][web:21]
+            t.left(angle)
         except turtle.Terminator:
             t = None
             screen = None
@@ -120,7 +119,7 @@ def process_command(line: str) -> int:
             print(f"{Fore.RED}[ERR] Valor inválido para 'right'{Style.RESET_ALL}")
             return 0
         try:
-            t.right(angle)  # gira no sentido horário [web:19][web:21]
+            t.right(angle)
         except turtle.Terminator:
             t = None
             screen = None
@@ -169,7 +168,7 @@ def process_command(line: str) -> int:
     print(f"{Fore.YELLOW}[WARN] Comando desconhecido: {cmd_input}{Style.RESET_ALL}")
     return 0
 
-# Verificação de largura do terminal
+
 size = shutil.get_terminal_size()
 while int(size.columns) < MIN_WIDTH:
     size = shutil.get_terminal_size()
@@ -180,7 +179,7 @@ while int(size.columns) < MIN_WIDTH:
 print(f'{Style.RESET_ALL}\n\nTodos os comandos podem ser vistos usando o comando "help"')
 print("\nTurtleCode Shell")
 
-# Garante pasta scripts
+
 os.makedirs("scripts", exist_ok=True)
 
 while True:
@@ -254,3 +253,4 @@ while True:
     else:
         # Tenta interpretar o que o usuário digitou como comando de turtle
         process_command(raw_input_cmd)
+
